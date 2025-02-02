@@ -37,13 +37,31 @@ void showData(double *x,int N,int M){
     cout << fixed << setprecision(2);
     for(int i = 0; i < N*M; i++){
         cout << *(x+i);
-        if(*(x+i) == *x[N-1]) cout << endl;
+        if((i+1)% M == 0) cout << endl;
         else cout << " ";
     }
 }
 
-/*void randData(double *x,int N,int M){
+void randData(double *x,int N,int M){
     for(int i = 0; i < N*M; i++){
-        x + i = (rand()%101)/100;
+        *(x + i) = (rand()%101)/100.00;
     }
-}*/
+}
+
+void findRowSum(const double *arr, double *sum1, int N, int M){
+    for(int i = 0; i < N; i++){
+        sum1[i] = 0;
+        for(int j = 0; j < M; j++){
+            sum1[i] += *(arr + i * M + j);
+        }
+    }
+}
+
+void findColSum(const double *arr, double *sum2, int N, int M){
+    for(int j = 0; j < M; j++){
+        sum2[j] = 0;
+        for(int i = 0; i < N; i++){
+            sum2[j] += *(arr + i * M + j);
+        }
+    }
+}
